@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5324E54720769BEB000EB9F8 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5324E54620769BEB000EB9F8 /* Response.swift */; };
+		5324E5492076B4DF000EB9F8 /* FourSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5324E5482076B4DF000EB9F8 /* FourSquare.swift */; };
+		5324E54B2076B523000EB9F8 /* Venues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5324E54A2076B523000EB9F8 /* Venues.swift */; };
+		5324E54D2076B53D000EB9F8 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5324E54C2076B53D000EB9F8 /* Location.swift */; };
 		5362CB3620756CD6003E0390 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5362CB3520756CD6003E0390 /* AppDelegate.swift */; };
 		5362CB3820756CD6003E0390 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5362CB3720756CD6003E0390 /* ViewController.swift */; };
 		5362CB3B20756CD6003E0390 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5362CB3920756CD6003E0390 /* Main.storyboard */; };
@@ -35,6 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5324E54620769BEB000EB9F8 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		5324E5482076B4DF000EB9F8 /* FourSquare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourSquare.swift; sourceTree = "<group>"; };
+		5324E54A2076B523000EB9F8 /* Venues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venues.swift; sourceTree = "<group>"; };
+		5324E54C2076B53D000EB9F8 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		5362CB3220756CD6003E0390 /* FourSquare App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FourSquare App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5362CB3520756CD6003E0390 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5362CB3720756CD6003E0390 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +114,10 @@
 				5362CB4120756CD7003E0390 /* LaunchScreen.storyboard */,
 				5362CB4420756CD7003E0390 /* Info.plist */,
 				5362CB3C20756CD6003E0390 /* FourSquare_App.xcdatamodeld */,
+				5324E54620769BEB000EB9F8 /* Response.swift */,
+				5324E5482076B4DF000EB9F8 /* FourSquare.swift */,
+				5324E54A2076B523000EB9F8 /* Venues.swift */,
+				5324E54C2076B53D000EB9F8 /* Location.swift */,
 			);
 			path = "FourSquare App";
 			sourceTree = "<group>";
@@ -260,8 +272,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				5362CB3820756CD6003E0390 /* ViewController.swift in Sources */,
+				5324E54B2076B523000EB9F8 /* Venues.swift in Sources */,
 				5362CB3E20756CD6003E0390 /* FourSquare_App.xcdatamodeld in Sources */,
 				5362CB3620756CD6003E0390 /* AppDelegate.swift in Sources */,
+				5324E54720769BEB000EB9F8 /* Response.swift in Sources */,
+				5324E5492076B4DF000EB9F8 /* FourSquare.swift in Sources */,
+				5324E54D2076B53D000EB9F8 /* Location.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
