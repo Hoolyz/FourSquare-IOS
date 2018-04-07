@@ -54,5 +54,9 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Required for App Use</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Required for App Use</string>
 </dict>
 </plist>

@@ -7,14 +7,19 @@
 //
 
 import UIKit
+import CoreLocation
+import MapKit
 
 
-
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
+class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate  {
     
     var foursquare : FourSquare!
     
     var appkey = AppKey()
+    
+    var currentLUserLocation = CurrentUserLocation(lat: Double(60.1705171), lng: Double(24.935404))
+    
+    var locationManager = CLLocationManager()
     
     var waitaMoment = 0
     
@@ -63,16 +68,42 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return cell
     }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let userLocation: CLLocation = locations[0]
+        
+        let latitude: CLLocationDegrees = userLocation.coordinate.latitude
+        
+        let longitude: CLLocationDegrees = userLocation.coordinate.longitude
+        
+        let latDelta: CLLocationDegrees = 0.01
+        
+        let lonDelta: CLLocationDegrees = 0.01
+    
+        currentLUserLocation.lat = latitude
+        
+        currentLUserLocation.lng = longitude
+        
+        
+    }
+    
     
     func getData(searchVariable: String?) {
         
         var secretKey = appkey.clientSecret
         var clientID = appkey.clientID
+        var lng = currentLUserLocation.lng as! Double
+        var lat = currentLUserLocation.lat as! Double
         
-       var fixedVariable = searchVariable?.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
+        var fixedVariable = searchVariable?.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil) as! String
         
-        var urlString = "https://api.foursquare.com/v2/venues/search?v=20171411&ll=60.1705171%2C24.935404&query=" + fixedVariable! + "&intent=checkin&radius=30000&client_id=" + secretKey + "&client_secret=" + clientID + ""
         
+        
+       //    var urlString = "https://api.foursquare.com/v2/venues/search?v=20171411&ll=60.1705171%2C24.935404&query=" + fixedVariable! + "&intent=checkin&radius=30000&client_id=" + secretKey + "&client_secret=" + clientID + ""
+        
+     var urlString = "https://api.foursquare.com/v2/venues/search?v=20171411&ll=\(lat)%2C\(lng)&query=\(fixedVariable)&intent=checkin&radius=30000&client_id=\(secretKey)&client_secret=\(clientID)"
+        
+        print(urlString)
        var fixedString = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
 
         guard let url = URL(string: urlString) else { return }
@@ -127,6 +158,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
         
         getData(searchVariable: "Helsinki")
          self.table.reloadData()
