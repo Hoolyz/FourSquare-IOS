@@ -21,6 +21,8 @@
 		5362CB4E20756CD7003E0390 /* FourSquare_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5362CB4D20756CD7003E0390 /* FourSquare_AppTests.swift */; };
 		5362CB5920756CD7003E0390 /* FourSquare_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5362CB5820756CD7003E0390 /* FourSquare_AppUITests.swift */; };
 		53BCA21F207944110057CC0F /* AppKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BCA21E207944110057CC0F /* AppKey.swift */; };
+		53BDCFF4207A58410007735E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BDCFF3207A58410007735E /* DetailViewController.swift */; };
+		53BDCFF6207AA4020007735E /* SelectedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BDCFF5207AA4020007735E /* SelectedItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,8 @@
 		5362CB5820756CD7003E0390 /* FourSquare_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourSquare_AppUITests.swift; sourceTree = "<group>"; };
 		5362CB5A20756CD7003E0390 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		53BCA21E207944110057CC0F /* AppKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKey.swift; sourceTree = "<group>"; };
+		53BDCFF3207A58410007735E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		53BDCFF5207AA4020007735E /* SelectedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,7 @@
 				5362CB3520756CD6003E0390 /* AppDelegate.swift */,
 				5362CB3720756CD6003E0390 /* ViewController.swift */,
 				5362CB3920756CD6003E0390 /* Main.storyboard */,
+				53BDCFF3207A58410007735E /* DetailViewController.swift */,
 				5362CB3F20756CD7003E0390 /* Assets.xcassets */,
 				5362CB4120756CD7003E0390 /* LaunchScreen.storyboard */,
 				5362CB4420756CD7003E0390 /* Info.plist */,
@@ -124,6 +129,7 @@
 				5324E54A2076B523000EB9F8 /* Venues.swift */,
 				5324E54C2076B53D000EB9F8 /* Location.swift */,
 				53322A0F2079713E002084A3 /* UserLocation.swift */,
+				53BDCFF5207AA4020007735E /* SelectedItem.swift */,
 			);
 			path = "FourSquare App";
 			sourceTree = "<group>";
@@ -284,8 +290,10 @@
 				5362CB3E20756CD6003E0390 /* FourSquare_App.xcdatamodeld in Sources */,
 				5362CB3620756CD6003E0390 /* AppDelegate.swift in Sources */,
 				5324E54720769BEB000EB9F8 /* Response.swift in Sources */,
+				53BDCFF4207A58410007735E /* DetailViewController.swift in Sources */,
 				5324E5492076B4DF000EB9F8 /* FourSquare.swift in Sources */,
 				5324E54D2076B53D000EB9F8 /* Location.swift in Sources */,
+				53BDCFF6207AA4020007735E /* SelectedItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

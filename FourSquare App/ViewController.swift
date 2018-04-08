@@ -15,6 +15,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     
     var foursquare : FourSquare!
     
+    var selectedItem : SelectedItem!
+    
     var appkey = AppKey()
     
     var currentLUserLocation = CurrentUserLocation(lat: Double(60.1705171), lng: Double(24.935404))
@@ -24,19 +26,24 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     var waitaMoment = 0
     
     @IBOutlet weak var searchBox: UITextField!
-    
-
-    @IBAction func asdasd(_ sender: Any) {
+   
+    @IBAction func searchInput(_ sender: UITextField) {
         
         if(searchBox.text != "") {
-            
+         //    self.table.reloadData()
+            print(searchBox.text)
             getData(searchVariable: searchBox.text)
             
-             self.table.reloadData()
+           self.table.reloadData()
 
         }
+         self.table.reloadData()
     }
     
+    @IBAction func testi(_ sender: UITextField) {
+               self.table.reloadData()
+        print(testi)
+    }
     
     @IBOutlet weak var table: UITableView!
     
@@ -48,7 +55,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         
         var foursquarecount = foursquare.response?.venues?.count as! Int
         
-        if (foursquarecount > 0) {
+        if (foursquarecount >= 0) {
             count = foursquare?.response?.venues?.count as! Int
         }
 
@@ -56,15 +63,50 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         return (count)
     }
     
+    func tableView(_ tableView: UITableView,didSelectRowAt indexPath: IndexPath ) {
+
+        if(indexPath.row != foursquare.response?.venues?.count){
+
+           // let detailViewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailView") as! DetailViewController
+               /*
+            selectedItem.detailLat = (foursquare?.response?.venues?[indexPath.row].location?.lat)!
+            selectedItem.detailLong = (foursquare?.response?.venues?[indexPath.row].location?.lng)!
+            selectedItem.Name = (foursquare?.response?.venues?[indexPath.row].name)!
+            
+            self.performSegue(withIdentifier: "DetailView", sender: nil)
+            
+            if (segue.identifier == "DetailViewController"){
+                let destVC:DetailViewController = segue.destination as! DetailViewController
+                destVC.selectedItem = selectedItem
+                
+            }
+            */
+ self.table.reloadData()
+        print(foursquare?.response?.venues?[indexPath.row].name)
+        }
+            
+        
+    }
+    
+
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        
-        let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell")
-         if (waitaMoment > 0) {
+    
+        let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
+         if (waitaMoment > 0 && indexPath.row >= 0) {
+      
+            
+            var distanceDetail = foursquare?.response?.venues?[indexPath.row].location?.distance
+            
+            var distanceDetailText = String(distanceDetail!) + "m"
+            
+            //print(distanceDetailText)
         
         cell.textLabel?.text = foursquare?.response?.venues?[indexPath.row].name as? String
+        cell.detailTextLabel?.text = distanceDetailText
  
         }
+        
         return cell
     }
     
@@ -87,7 +129,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         
     }
     
-    
     func getData(searchVariable: String?) {
         
         var secretKey = appkey.clientSecret
@@ -96,24 +137,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         var lat = currentLUserLocation.lat as! Double
         
         var fixedVariable = searchVariable?.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil) as! String
-        
-        
-        
-       //    var urlString = "https://api.foursquare.com/v2/venues/search?v=20171411&ll=60.1705171%2C24.935404&query=" + fixedVariable! + "&intent=checkin&radius=30000&client_id=" + secretKey + "&client_secret=" + clientID + ""
-        
+
      var urlString = "https://api.foursquare.com/v2/venues/search?v=20171411&ll=\(lat)%2C\(lng)&query=\(fixedVariable)&intent=checkin&radius=30000&client_id=\(secretKey)&client_secret=\(clientID)"
-        
-        print(urlString)
+    
        var fixedString = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
 
         guard let url = URL(string: urlString) else { return }
-        
-
 
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             
-            
-            if error != nil {
+         if error != nil {
                 print("error")
             }
             else
@@ -121,27 +154,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
                 if let urlContent = data {
                     
                     do {
-                    
+                     
                         self.foursquare =  try JSONDecoder().decode(FourSquare.self, from: urlContent)
                         
-                        
-                       //l print(self.foursquare.response?.venues?.count as! Int)
-                        /*
-                        for item in (self.foursquare.response?.venues)! {
-                            print("---")
-                            print(item.name)
-                            print(item.location?.formattedAddress)
-                            print("---")
-                        }
-                        
-                        */
-         
                         self.waitaMoment = 1
-                       
-                        
+                
                     }
                     catch {
-                        print("perkele")
+                        print("Error in URLSession / JSONDecoder")
                     }
                     
                     
@@ -150,7 +170,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         }
         
         task.resume()
-         
         
     }
     
@@ -164,7 +183,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         locationManager.startUpdatingLocation()
         
         getData(searchVariable: "Helsinki")
-         self.table.reloadData()
+               self.table.reloadData()
+  
         
     }
 

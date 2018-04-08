@@ -38,13 +38,14 @@
                                 </connections>
                             </tableView>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cXd-5v-h9H">
-                                <rect key="frame" x="16" y="36" width="343" height="31"/>
+                                <rect key="frame" x="16" y="62" width="343" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="asdasd:" destination="BYZ-38-t0r" eventType="editingChanged" id="Gfs-jz-rgd"/>
+                                    <action selector="searchInput:" destination="BYZ-38-t0r" eventType="valueChanged" id="j3G-Sj-6aK"/>
+                                    <action selector="searchInput:" destination="BYZ-38-t0r" eventType="editingChanged" id="ltB-5x-khY"/>
                                 </connections>
                             </textField>
                         </subviews>
@@ -59,6 +60,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="116" y="118.29085457271366"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="voa-q5-rCz">
+            <objects>
+                <viewController storyboardIdentifier="DetailView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8Mp-Qg-I8r" customClass="DetailViewController" customModule="FourSquare_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <mapView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="ZKR-ih-HHC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </mapView>
+                    <connections>
+                        <outlet property="map" destination="ZKR-ih-HHC" id="TMZ-O6-rqh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dsT-FV-Y2T" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1023" y="118"/>
         </scene>
     </scenes>
 </document>
