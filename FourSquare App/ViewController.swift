@@ -15,7 +15,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     
     var foursquare : FourSquare!
     
-    var selectedItem : SelectedItem!
+    
     
     var appkey = AppKey()
     
@@ -26,6 +26,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     var waitaMoment = 0
     
     @IBOutlet weak var searchBox: UITextField!
+    
+
    
     @IBAction func searchInput(_ sender: UITextField) {
         
@@ -40,10 +42,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
          self.table.reloadData()
     }
     
-    @IBAction func testi(_ sender: UITextField) {
-               self.table.reloadData()
-        print(testi)
-    }
+
     
     @IBOutlet weak var table: UITableView!
     
@@ -67,12 +66,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
 
         if(indexPath.row != foursquare.response?.venues?.count){
 
-           // let detailViewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailView") as! DetailViewController
-               /*
-            selectedItem.detailLat = (foursquare?.response?.venues?[indexPath.row].location?.lat)!
-            selectedItem.detailLong = (foursquare?.response?.venues?[indexPath.row].location?.lng)!
-            selectedItem.Name = (foursquare?.response?.venues?[indexPath.row].name)!
+            let detailViewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailView") as! DetailViewController
+   
+            var detailLong: Double = foursquare?.response?.venues?[indexPath.row].location?.lng! as Double!
+            var detailLat: Double = foursquare?.response?.venues?[indexPath.row].location?.lat! as Double!
+            var detailName : String = foursquare!.response!.venues![indexPath.row].name! as String!
             
+            detailViewController.detailLat = detailLat
+            detailViewController.detailLong = detailLong
+            detailViewController.currentLat = currentLUserLocation.lat!
+            detailViewController.currentLong = currentLUserLocation.lng!
+            detailViewController.detailName = (foursquare!.response!.venues![indexPath.row].name! as String )
+            
+          
+            
+            navigationController?.pushViewController(detailViewController, animated: true)
+            /*
             self.performSegue(withIdentifier: "DetailView", sender: nil)
             
             if (segue.identifier == "DetailViewController"){
@@ -118,9 +127,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         
         let longitude: CLLocationDegrees = userLocation.coordinate.longitude
         
-        let latDelta: CLLocationDegrees = 0.01
-        
-        let lonDelta: CLLocationDegrees = 0.01
     
         currentLUserLocation.lat = latitude
         
