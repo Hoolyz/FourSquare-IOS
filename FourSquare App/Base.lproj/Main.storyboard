@@ -71,7 +71,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </mapView>
                     <connections>
-                        <outlet property="map" destination="ZKR-ih-HHC" id="TMZ-O6-rqh"/>
+                        <outlet property="mapView" destination="ZKR-ih-HHC" id="BqB-cu-WfG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dsT-FV-Y2T" userLabel="First Responder" sceneMemberID="firstResponder"/>

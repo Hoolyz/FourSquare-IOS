@@ -12,7 +12,7 @@ import MapKit
 
 class DetailViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
-    @IBOutlet var map: MKMapView!
+    @IBOutlet var mapView: MKMapView!
     
    //  var selectedItem : SelectedItem
     
@@ -31,7 +31,8 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-            var currentLUserLocation = CurrentUserLocation(lat: currentLat, lng: currentLong)
+        
+        var currentLUserLocation = CurrentUserLocation(lat: currentLat, lng: currentLong)
         let userLocation: CLLocation = locations[0]
         
         let latitude: CLLocationDegrees = userLocation.coordinate.latitude
@@ -64,11 +65,15 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
+        mapView.delegate = self
+       
         mapUpdate()
     }
     
     func mapUpdate() {
         
+        
+      
             var currentLUserLocation = CurrentUserLocation(lat: currentLat, lng: currentLong)
 
             var lat = currentLUserLocation.lat as! Double
@@ -84,11 +89,70 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
             let location: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: lat, longitude: long )
             
             let region: MKCoordinateRegion = MKCoordinateRegion(center: location, span: span)
+        
+        
+        var destinationLocation = CLLocationCoordinate2D(latitude: detailLat, longitude: detailLong )
+        var sourceLocation = CLLocationCoordinate2D(latitude: lat, longitude: long )
+        
+        let sourceLocationMark = MKPlacemark(coordinate: sourceLocation)
+        let destinationLocationMark = MKPlacemark(coordinate: destinationLocation)
+        
+        let sourceMapItem = MKMapItem(placemark: sourceLocationMark)
+        let destinationMapItem = MKMapItem(placemark: destinationLocationMark)
+        
+        let sourceAnnotation = MKPointAnnotation()
+        sourceAnnotation.title = "Your Location"
+        
+        if let locationMark = sourceLocationMark.location {
+            sourceAnnotation.coordinate = locationMark.coordinate
+        }
+        
+        let destinationAnnotation = MKPointAnnotation()
+        destinationAnnotation.title = detailName
+        
+        if let locationMark = destinationLocationMark.location {
+            destinationAnnotation.coordinate = locationMark.coordinate
+        }
+        
+        self.mapView.showAnnotations([sourceAnnotation,destinationAnnotation], animated: true)
+        
+        let directionRequest = MKDirectionsRequest()
+        
+        directionRequest.source = sourceMapItem
+        directionRequest.destination = destinationMapItem
+        directionRequest.transportType = .automobile
+        
+        let directions = MKDirections(request: directionRequest)
+        
+        directions.calculate {
+            (response, error) -> Void in
             
-            map.setRegion(region, animated: true)
+            guard let response = response else {
+                if let error = error {
+                    print("Error: \(error)")
+                }
+                
+                return
+            }
         
             
+            let route = response.routes[0]
+            self.mapView.add((route.polyline), level: MKOverlayLevel.aboveRoads)
+            
+            let rect = route.polyline.boundingMapRect
+            self.mapView.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
         
+        }
+        
+    
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = UIColor.blue
+        renderer.lineWidth = 4.0
+        
+        return renderer
     }
     
     override func didReceiveMemoryWarning() {
