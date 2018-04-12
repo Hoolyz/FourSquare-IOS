@@ -39,7 +39,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
            self.table.reloadData()
 
         }
-         self.table.reloadData()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { 
+            self.table.reloadData()
+        }
+      
     }
     
 
@@ -55,7 +59,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         var foursquarecount = foursquare.response?.venues?.count as! Int
         
         if (foursquarecount >= 0) {
-            count = foursquare?.response?.venues?.count as! Int
+            count = foursquarecount
         }
 
         }
@@ -81,17 +85,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
           
             
             navigationController?.pushViewController(detailViewController, animated: true)
-            /*
-            self.performSegue(withIdentifier: "DetailView", sender: nil)
-            
-            if (segue.identifier == "DetailViewController"){
-                let destVC:DetailViewController = segue.destination as! DetailViewController
-                destVC.selectedItem = selectedItem
-                
-            }
-            */
- self.table.reloadData()
-        print(foursquare?.response?.venues?[indexPath.row].name)
+
+            self.table.reloadData()
+      
         }
             
         
@@ -109,7 +105,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
             
             var distanceDetailText = String(distanceDetail!) + "m"
             
-            //print(distanceDetailText)
         
         cell.textLabel?.text = foursquare?.response?.venues?[indexPath.row].name as? String
         cell.detailTextLabel?.text = distanceDetailText
@@ -188,7 +183,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
-        getData(searchVariable: "Helsinki")
+        getData(searchVariable: "Pizza")
                self.table.reloadData()
   
         
