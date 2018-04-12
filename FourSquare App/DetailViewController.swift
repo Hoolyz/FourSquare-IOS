@@ -53,13 +53,7 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib
-     
-        print("Second View")
-        print( detailLat)
-        print(detailLong)
-        print(detailName)
-         print("Second View")
-        
+
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()

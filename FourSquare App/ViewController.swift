@@ -14,9 +14,7 @@ import MapKit
 class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate  {
     
     var foursquare : FourSquare!
-    
-    
-    
+
     var appkey = AppKey()
     
     var currentLUserLocation = CurrentUserLocation(lat: Double(60.1705171), lng: Double(24.935404))
@@ -26,27 +24,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     var waitaMoment = 0
     
     @IBOutlet weak var searchBox: UITextField!
-    
-
    
     @IBAction func searchInput(_ sender: UITextField) {
         
         if(searchBox.text != "") {
          //    self.table.reloadData()
-            print(searchBox.text)
+        
             getData(searchVariable: searchBox.text)
             
            self.table.reloadData()
 
         }
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { 
             self.table.reloadData()
         }
-      
     }
-    
-
     
     @IBOutlet weak var table: UITableView!
     
@@ -82,8 +74,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
             detailViewController.currentLong = currentLUserLocation.lng!
             detailViewController.detailName = (foursquare!.response!.venues![indexPath.row].name! as String )
             
-          
-            
             navigationController?.pushViewController(detailViewController, animated: true)
 
             self.table.reloadData()
@@ -92,8 +82,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
             
         
     }
-    
-
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
@@ -122,11 +110,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         
         let longitude: CLLocationDegrees = userLocation.coordinate.longitude
         
-    
         currentLUserLocation.lat = latitude
         
         currentLUserLocation.lng = longitude
-        
         
     }
     
