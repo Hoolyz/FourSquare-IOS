@@ -20,6 +20,7 @@
 		5362CB4320756CD7003E0390 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5362CB4120756CD7003E0390 /* LaunchScreen.storyboard */; };
 		5362CB4E20756CD7003E0390 /* FourSquare_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5362CB4D20756CD7003E0390 /* FourSquare_AppTests.swift */; };
 		5362CB5920756CD7003E0390 /* FourSquare_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5362CB5820756CD7003E0390 /* FourSquare_AppUITests.swift */; };
+		539973982083D972001A8A66 /* testJson.json in Resources */ = {isa = PBXBuildFile; fileRef = 539973972083D972001A8A66 /* testJson.json */; };
 		53BCA21F207944110057CC0F /* AppKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BCA21E207944110057CC0F /* AppKey.swift */; };
 		53BDCFF4207A58410007735E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BDCFF3207A58410007735E /* DetailViewController.swift */; };
 		53BDCFF6207AA4020007735E /* SelectedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BDCFF5207AA4020007735E /* SelectedItem.swift */; };
@@ -62,6 +63,7 @@
 		5362CB5420756CD7003E0390 /* FourSquare AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FourSquare AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5362CB5820756CD7003E0390 /* FourSquare_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourSquare_AppUITests.swift; sourceTree = "<group>"; };
 		5362CB5A20756CD7003E0390 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		539973972083D972001A8A66 /* testJson.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = testJson.json; sourceTree = "<group>"; };
 		53BCA21E207944110057CC0F /* AppKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKey.swift; sourceTree = "<group>"; };
 		53BDCFF3207A58410007735E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		53BDCFF5207AA4020007735E /* SelectedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedItem.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			children = (
 				5362CB4D20756CD7003E0390 /* FourSquare_AppTests.swift */,
 				5362CB4F20756CD7003E0390 /* Info.plist */,
+				539973972083D972001A8A66 /* testJson.json */,
 			);
 			path = "FourSquare AppTests";
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				539973982083D972001A8A66 /* testJson.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
