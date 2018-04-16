@@ -86,7 +86,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
         let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
-         if (waitaMoment > 0 && indexPath.row >= 0) {
+        if (waitaMoment > 0 && indexPath.row >= 0 && indexPath.row <= (foursquare?.response?.venues?.count)!) {
       
             
             var distanceDetail = foursquare?.response?.venues?[indexPath.row].location?.distance

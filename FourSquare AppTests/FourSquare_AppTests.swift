@@ -57,7 +57,7 @@ class FourSquare_AppTests: XCTestCase {
                 foursquare =  try JSONDecoder().decode(FourSquare.self, from: jsonData)
                 
                 XCTAssertNotNil(foursquare, "JsonDecoder did not decode correctly")
-         
+         fkfkfk
                 expectation.fulfill()
             }
             catch {
