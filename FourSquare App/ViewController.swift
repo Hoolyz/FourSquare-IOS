@@ -16,10 +16,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     var foursquare : FourSquare!
 
     var appkey = AppKey()
-    
-    var currentLUserLocation = CurrentUserLocation(lat: Double(60.1705171), lng: Double(24.935404))
-    
+     
     var locationManager = CLLocationManager()
+    
+     var currentLUserLocation = CurrentUserLocation(lat: 0, lng: 0)
     
     var waitaMoment = 0
     
@@ -30,7 +30,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     @IBAction func searchInput(_ sender: UITextField) {
         
         if(searchBox.text != "") {
-        
+            self.table.allowsSelection = false
             getData(searchVariable: searchBox.text)
             
            self.table.reloadData()
@@ -38,6 +38,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { 
             self.table.reloadData()
+            self.table.allowsSelection = true
         }
     }
     
@@ -169,8 +170,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
-        getData(searchVariable: "Pizza")
-               self.table.reloadData()
+        
+        self.table.reloadData()
   
         
     }
