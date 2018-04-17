@@ -13,13 +13,9 @@ import MapKit
 class DetailViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
     @IBOutlet var mapView: MKMapView!
-    
-   //  var selectedItem : SelectedItem
-    
+   
     var currentLong = Double()
     var currentLat = Double()
-    
-   
     
     var locationManager = CLLocationManager()
     
@@ -28,7 +24,6 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
     var detailName = String()
     
 
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         
@@ -66,8 +61,6 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
     
     func mapUpdate() {
         
-        
-      
             var currentLUserLocation = CurrentUserLocation(lat: currentLat, lng: currentLong)
 
             var lat = currentLUserLocation.lat as! Double

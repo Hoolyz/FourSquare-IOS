@@ -24,11 +24,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     var waitaMoment = 0
     
     @IBOutlet weak var searchBox: UITextField!
+    
+    @IBOutlet weak var table: UITableView!
    
     @IBAction func searchInput(_ sender: UITextField) {
         
         if(searchBox.text != "") {
-         //    self.table.reloadData()
         
             getData(searchVariable: searchBox.text)
             
@@ -40,7 +41,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         }
     }
     
-    @IBOutlet weak var table: UITableView!
+   
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -87,7 +88,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     
         let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
         if (waitaMoment > 0 && indexPath.row >= 0 && indexPath.row <= (foursquare?.response?.venues?.count)!) {
-      
             
             var distanceDetail = foursquare?.response?.venues?[indexPath.row].location?.distance
             
