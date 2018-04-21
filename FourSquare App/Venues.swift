@@ -12,10 +12,13 @@ class Venue: Decodable {
     
     var name: String?
     
+    var id: String?
+    
     var location: Location?
     
     
-    init(name: String? , location: Location?) {
+    init(name: String? , location: Location?, id: String?) {
+        self.id = id
         self.name = name
         self.location = location
     }

@@ -29,17 +29,17 @@ class FourSquare_AppTests: XCTestCase {
     
     func testURLSession(){
         
-           var appkey = AppKey()
-        var currentUserLocation = CurrentUserLocation(lat: Double(60.1705171), lng: Double(24.935404))
+        let appkey = AppKey()
+        let lat = Double(60.1705171)
+        let lng = Double(24.935404)
         let expectation = XCTestExpectation(description: "Download Foursquare API Json")
+        let urlString = String(describing:"https://api.foursquare.com/v2/venues/search?v=20171411&ll=\(lat)%2C\(lng)&query=Helsinki&intent=checkin&radius=30000&client_id=\(appkey.clientID)&client_secret=\(appkey.clientSecret)")
         
-        let urlString = "https://api.foursquare.com/v2/venues/search?v=20171411&ll=\(currentUserLocation.lat)%2C\(currentUserLocation.lng)&query=Helsinki&intent=checkin&radius=30000&client_id=\(appkey.clientID)&client_secret=\(appkey.clientSecret)"
-        
-        var fixedString = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+        _ = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         
         guard let url = URL(string: urlString) else { return }
         
-        let task = URLSession.shared.dataTask(with: url) { (data,response,error)  in
+        _ = URLSession.shared.dataTask(with: url) { (data,response,error)  in
             XCTAssertNotNil(data, "No Data downloaded")
             
             expectation.fulfill()

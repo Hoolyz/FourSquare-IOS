@@ -8,13 +8,10 @@
 
 import Foundation
 
-class CurrentUserLocation {
+struct CurrentUserLocation {
     
-    var lat: Double?
-    var lng: Double?
+    static var lat: Double?
+    static var lng: Double?
     
-    init(lat: Double?, lng: Double?) {
-        self.lat = lat
-        self.lng = lng
-    }
+
 }

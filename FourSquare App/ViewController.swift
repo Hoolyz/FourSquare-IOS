@@ -19,7 +19,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
      
     var locationManager = CLLocationManager()
     
-     var currentLUserLocation = CurrentUserLocation(lat: 0, lng: 0)
+    //var currentLUserLocation = CurrentUserLocation()
     
     var waitaMoment = 0
     
@@ -39,6 +39,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { 
             self.table.reloadData()
             self.table.allowsSelection = true
+            
+         
         }
     }
     
@@ -50,7 +52,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         
         if (waitaMoment > 0) {
         
-        var foursquarecount = foursquare.response?.venues?.count as! Int
+            let foursquarecount = (foursquare.response?.venues?.count)!
         
         if (foursquarecount >= 0) {
             count = foursquarecount
@@ -66,14 +68,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
 
             let detailViewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailView") as! DetailViewController
    
-            var detailLong: Double = foursquare?.response?.venues?[indexPath.row].location?.lng! as Double!
-            var detailLat: Double = foursquare?.response?.venues?[indexPath.row].location?.lat! as Double!
-            var detailName : String = foursquare!.response!.venues![indexPath.row].name! as String!
+            let detailLong: Double = (foursquare?.response?.venues?[indexPath.row].location?.lng! as Double?)!
+            let detailLat: Double = (foursquare?.response?.venues?[indexPath.row].location?.lat! as Double?)!
+            var _ : String = (foursquare!.response!.venues![indexPath.row].name! as String?)!
             
             detailViewController.detailLat = detailLat
             detailViewController.detailLong = detailLong
-            detailViewController.currentLat = currentLUserLocation.lat!
-            detailViewController.currentLong = currentLUserLocation.lng!
+            detailViewController.id = (foursquare!.response!.venues![indexPath.row].id! as String )
+            detailViewController.currentLat = CurrentUserLocation.lat!
+            detailViewController.currentLong = CurrentUserLocation.lng!
             detailViewController.detailName = (foursquare!.response!.venues![indexPath.row].name! as String )
             
             navigationController?.pushViewController(detailViewController, animated: true)
@@ -90,12 +93,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
         if (waitaMoment > 0 && indexPath.row >= 0 && indexPath.row <= (foursquare?.response?.venues?.count)!) {
             
-            var distanceDetail = foursquare?.response?.venues?[indexPath.row].location?.distance
+            let distanceDetail = foursquare?.response?.venues?[indexPath.row].location?.distance
             
-            var distanceDetailText = String(distanceDetail!) + "m"
+          
+            
+            let distanceDetailText = String(distanceDetail!) + "m"
             
         
-        cell.textLabel?.text = foursquare?.response?.venues?[indexPath.row].name as? String
+        cell.textLabel?.text = foursquare?.response?.venues?[indexPath.row].name
         cell.detailTextLabel?.text = distanceDetailText
  
         }
@@ -111,25 +116,29 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         
         let longitude: CLLocationDegrees = userLocation.coordinate.longitude
         
-        currentLUserLocation.lat = latitude
         
-        currentLUserLocation.lng = longitude
+        CurrentUserLocation.lat = latitude
+        
+        CurrentUserLocation.lng = longitude
+        
         
     }
     
     func getData(searchVariable: String?) {
         
-        var secretKey = appkey.clientSecret
-        var clientID = appkey.clientID
-        var lng = currentLUserLocation.lng as! Double
-        var lat = currentLUserLocation.lat as! Double
         
-        var fixedVariable = searchVariable?.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil) as! String
+        let secretKey = appkey.clientSecret
+        let clientID = appkey.clientID
+        let lng = CurrentUserLocation.lng!
+        let lat = CurrentUserLocation.lat!
+        
+        let fixedVariable = searchVariable?.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
 
-     var urlString = "https://api.foursquare.com/v2/venues/search?v=20171411&ll=\(lat)%2C\(lng)&query=\(fixedVariable)&intent=checkin&radius=30000&client_id=\(secretKey)&client_secret=\(clientID)"
+        let urlString = "https://api.foursquare.com/v2/venues/search?v=20171411&ll=\(lat)%2C\(lng)&query=\(String(describing: fixedVariable!))&intent=checkin&radius=30000&client_id=\(secretKey)&client_secret=\(clientID)"
     
-       var fixedString = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+        _ = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
 
+        print(urlString)
         guard let url = URL(string: urlString) else { return }
 
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -158,7 +167,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         }
         
         task.resume()
-        
     }
     
     override func viewDidLoad() {
@@ -169,7 +177,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        
         
         self.table.reloadData()
   
