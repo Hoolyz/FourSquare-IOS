@@ -30,8 +30,10 @@ class FourSquare_AppTests: XCTestCase {
     func testURLSession(){
         
         let appkey = AppKey()
+        
         let lat = Double(60.1705171)
         let lng = Double(24.935404)
+        
         let expectation = XCTestExpectation(description: "Download Foursquare API Json")
         let urlString = String(describing:"https://api.foursquare.com/v2/venues/search?v=20171411&ll=\(lat)%2C\(lng)&query=Helsinki&intent=checkin&radius=30000&client_id=\(appkey.clientID)&client_secret=\(appkey.clientSecret)")
         

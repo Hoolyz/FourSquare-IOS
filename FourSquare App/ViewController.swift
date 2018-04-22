@@ -36,7 +36,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
            self.table.reloadData()
 
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { 
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            
+            self.foursquare?.response?.venues?.sort(by: { ($0.location?.distance)! < ($1.location?.distance)! })
+            
             self.table.reloadData()
             self.table.allowsSelection = true
             
@@ -68,6 +71,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
 
             let detailViewController = self.storyboard?.instantiateViewController(withIdentifier: "DetailView") as! DetailViewController
    
+            
             let detailLong: Double = (foursquare?.response?.venues?[indexPath.row].location?.lng! as Double?)!
             let detailLat: Double = (foursquare?.response?.venues?[indexPath.row].location?.lat! as Double?)!
             var _ : String = (foursquare!.response!.venues![indexPath.row].name! as String?)!
@@ -92,6 +96,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     
         let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
         if (waitaMoment > 0 && indexPath.row >= 0 && indexPath.row <= (foursquare?.response?.venues?.count)!) {
+            
             
             let distanceDetail = foursquare?.response?.venues?[indexPath.row].location?.distance
             
