@@ -10,13 +10,27 @@ import UIKit
 import MapKit
 
 
-class DetailViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class DetailViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate  {
+
+    @IBOutlet weak var name: UILabel!
+    
+    @IBOutlet weak var contact: UILabel!
+    
+    @IBOutlet weak var address: UILabel!
+    
+
+    
+    @IBOutlet weak var imgView: UIImageView!
+    
+    @IBOutlet weak var url: UIButton!
     
     @IBOutlet var mapView: MKMapView!
    
     var currentLong = Double()
     var currentLat = Double()
     
+     var appkey = AppKey()
+        
     var locationManager = CLLocationManager()
     
     var detailLong = Double()
@@ -24,7 +38,17 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
     var detailName = String()
     var id = String()
     
+    var venueDetail : VenueDetail!
+    
 
+    @IBAction func urlClick(_ sender: Any) {
+        guard let btnUrl = URL(string: (self.venueDetail.response?.venue?.url)!) else { return }
+        if (UIApplication.shared.canOpenURL(btnUrl)){
+            UIApplication.shared.open(btnUrl, options: [:], completionHandler: nil)
+        }
+     self.url.titleLabel?.text = self.venueDetail.response?.venue?.url
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         
@@ -43,6 +67,8 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
         
            mapOverlay()
     }
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +82,70 @@ class DetailViewController: UIViewController, CLLocationManagerDelegate, MKMapVi
         mapView.delegate = self
        
         mapUpdate()
+        getDetailData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            
+            self.name.text = self.venueDetail.response?.venue?.name
+            self.contact.text = self.venueDetail.response?.venue?.contact?.formattedPhone
+            self.address.text = self.venueDetail.response?.venue?.location?.formattedAddress?[0]
+            self.url.titleLabel?.text = self.venueDetail.response?.venue?.url
+            
+            if ((self.venueDetail.response?.venue?.photos?.groups?.count)! > 0) {
+            let combinedImgUrl = (self.venueDetail.response?.venue?.photos?.groups?[0].items?[0].prefix)! + "500x500" + (self.venueDetail.response?.venue?.photos?.groups?[0].items?[0].suffix)!
+            
+            
+            guard let imgUrl = URL(string: combinedImgUrl) else { return }
+            
+            let data = try? Data(contentsOf: imgUrl)
+            
+            
+            self.imgView.image = UIImage(data: data!)
+                self.imgView.contentMode = .scaleAspectFit
+            }
+            
+        }
+    }
+    
+    func getDetailData() {
+	
+        let secretKey = appkey.clientSecret
+        let clientID = appkey.clientID
+        
+        let urlString = "https://api.foursquare.com/v2/venues/\(id)?v=20171411&&client_id=\(secretKey)&client_secret=\(clientID)"
+      
+        _ = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+        
+        print(urlString)
+        guard let url = URL(string: urlString) else { return }
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            
+            if error != nil {
+                print("error")
+            }
+            else
+            {
+                if let urlContent = data {
+                    
+                    do {
+                       // print(urlContent)
+                        self.venueDetail =  try JSONDecoder().decode(VenueDetail.self, from: urlContent)
+                        
+
+                        
+                        
+                    }
+                    catch {
+                        print("Error in URLSession / JSONDecoder")
+                    }
+                    
+                    
+                }
+            }
+        }
+        
+        task.resume()
+        print(venueDetail)
     }
     
     func mapUpdate() {

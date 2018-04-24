@@ -9,6 +9,7 @@
 import Foundation
 
 class Response: Decodable {
+    
     var venues: [Venue]?
     
     init(venues: [Venue]?) {

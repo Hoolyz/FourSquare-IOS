@@ -20,6 +20,12 @@
 		5362CB4320756CD7003E0390 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5362CB4120756CD7003E0390 /* LaunchScreen.storyboard */; };
 		5362CB4E20756CD7003E0390 /* FourSquare_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5362CB4D20756CD7003E0390 /* FourSquare_AppTests.swift */; };
 		5362CB5920756CD7003E0390 /* FourSquare_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5362CB5820756CD7003E0390 /* FourSquare_AppUITests.swift */; };
+		53783D73208F973B0091082C /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53783D72208F973B0091082C /* Photos.swift */; };
+		53783D75208F999F0091082C /* Groups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53783D74208F999F0091082C /* Groups.swift */; };
+		53783D77208F99B20091082C /* Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53783D76208F99B20091082C /* Items.swift */; };
+		53783D79208FA1490091082C /* VenueResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53783D78208FA1490091082C /* VenueResponse.swift */; };
+		53783D7B208FA1580091082C /* VenueDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53783D7A208FA1580091082C /* VenueDetail.swift */; };
+		53783D7D208FADC60091082C /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53783D7C208FADC60091082C /* Contact.swift */; };
 		539973982083D972001A8A66 /* testJson.json in Resources */ = {isa = PBXBuildFile; fileRef = 539973972083D972001A8A66 /* testJson.json */; };
 		53BCA21F207944110057CC0F /* AppKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BCA21E207944110057CC0F /* AppKey.swift */; };
 		53BDCFF4207A58410007735E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BDCFF3207A58410007735E /* DetailViewController.swift */; };
@@ -63,6 +69,12 @@
 		5362CB5420756CD7003E0390 /* FourSquare AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FourSquare AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5362CB5820756CD7003E0390 /* FourSquare_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourSquare_AppUITests.swift; sourceTree = "<group>"; };
 		5362CB5A20756CD7003E0390 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		53783D72208F973B0091082C /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
+		53783D74208F999F0091082C /* Groups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groups.swift; sourceTree = "<group>"; };
+		53783D76208F99B20091082C /* Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Items.swift; sourceTree = "<group>"; };
+		53783D78208FA1490091082C /* VenueResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueResponse.swift; sourceTree = "<group>"; };
+		53783D7A208FA1580091082C /* VenueDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueDetail.swift; sourceTree = "<group>"; };
+		53783D7C208FADC60091082C /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		539973972083D972001A8A66 /* testJson.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = testJson.json; sourceTree = "<group>"; };
 		53BCA21E207944110057CC0F /* AppKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKey.swift; sourceTree = "<group>"; };
 		53BDCFF3207A58410007735E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -129,9 +141,15 @@
 				5324E54620769BEB000EB9F8 /* Response.swift */,
 				5324E5482076B4DF000EB9F8 /* FourSquare.swift */,
 				5324E54A2076B523000EB9F8 /* Venues.swift */,
+				53783D72208F973B0091082C /* Photos.swift */,
 				5324E54C2076B53D000EB9F8 /* Location.swift */,
 				53322A0F2079713E002084A3 /* UserLocation.swift */,
 				53BDCFF5207AA4020007735E /* SelectedItem.swift */,
+				53783D7C208FADC60091082C /* Contact.swift */,
+				53783D74208F999F0091082C /* Groups.swift */,
+				53783D76208F99B20091082C /* Items.swift */,
+				53783D78208FA1490091082C /* VenueResponse.swift */,
+				53783D7A208FA1580091082C /* VenueDetail.swift */,
 			);
 			path = "FourSquare App";
 			sourceTree = "<group>";
@@ -289,8 +307,14 @@
 			files = (
 				5362CB3820756CD6003E0390 /* ViewController.swift in Sources */,
 				53BCA21F207944110057CC0F /* AppKey.swift in Sources */,
+				53783D7D208FADC60091082C /* Contact.swift in Sources */,
+				53783D7B208FA1580091082C /* VenueDetail.swift in Sources */,
+				53783D79208FA1490091082C /* VenueResponse.swift in Sources */,
 				5324E54B2076B523000EB9F8 /* Venues.swift in Sources */,
 				53322A102079713E002084A3 /* UserLocation.swift in Sources */,
+				53783D77208F99B20091082C /* Items.swift in Sources */,
+				53783D75208F999F0091082C /* Groups.swift in Sources */,
+				53783D73208F973B0091082C /* Photos.swift in Sources */,
 				5362CB3E20756CD6003E0390 /* FourSquare_App.xcdatamodeld in Sources */,
 				5362CB3620756CD6003E0390 /* AppDelegate.swift in Sources */,
 				5324E54720769BEB000EB9F8 /* Response.swift in Sources */,

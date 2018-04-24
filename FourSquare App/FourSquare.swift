@@ -9,6 +9,7 @@
 import Foundation
 
 class FourSquare: Decodable {
+    
     var response: Response?
     
     

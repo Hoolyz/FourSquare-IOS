@@ -26,7 +26,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     @IBOutlet weak var searchBox: UITextField!
     
     @IBOutlet weak var table: UITableView!
-   
+    
     @IBAction func searchInput(_ sender: UITextField) {
         
         if(searchBox.text != "") {
@@ -50,7 +50,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+          self.table.allowsSelection = false
         var count = 1;
         
         if (waitaMoment > 0) {
@@ -177,7 +177,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
